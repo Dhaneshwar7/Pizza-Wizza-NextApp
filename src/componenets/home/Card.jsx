@@ -1,13 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
 
-const Card = () => {
-	const sizeOptions = ['Regular', 'Medium', 'Large'];
+const Card = (props) => {
+	// const sizeOptions = ['Regular', 'Medium', 'Large'];
+    const data = props.foodData;
+	const sizeOptions = Object.keys(data.price);
 	return (
 		<div className="box">
 			<div className="w-80 rounded-lg bg-white overflow-hidden dark:bg-black border-gradient">
 				<div className="relative w-full h-80">
 					<Image
+						priority
 						src={'https://www.dominos.co.in/files/items/Farmhouse.jpg'}
 						layout="fill"
 						objectFit="cover"
@@ -15,9 +18,9 @@ const Card = () => {
 					/>
 				</div>
 				<div className="p-4">
-					<div lassName="font-bold mb-2 text-xl uppercase"> Pizza</div>
+					<div className="font-bold mb-2 text-xl uppercase"> {data.name}</div>
 					<p className="short_description text-gray-700 dark:text-gray-400 text-base">
-						blah blah blh
+						{data.description}
 					</p>
 				</div>
 				<div className="flex px-4 justify-between">
