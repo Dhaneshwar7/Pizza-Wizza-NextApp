@@ -3,7 +3,6 @@ import Image from 'next/image';
 import React, { useContext, useState } from 'react';
 
 const Card = props => {
-	// const sizeOptions = ['Regular', 'Medium', 'Large'];
 	const data = props.foodData;
 	const { state, dispatch } = useContext(CartContext);
 	const prizeOptions = Object.keys(data.price);
@@ -16,16 +15,34 @@ const Card = props => {
 	const handleSize = e => {
 		setSize(e.target.value);
 	};
-	const handleAddtoCart = () => {
-		dispatch({
-			type: 'ADD',
-			id: data.id,
-			name: data.name,
-			price: finalPrice,
-			qty: qty,
-			priceOption: size,
-			img:data.img
+	const handleAddtoCart = async () => {
+		const updateItem = await state.find(item => {
+			item.tempId === data.id + size;
+			// console.log(item.tempId);
+			// console.log(`${data.id}${size}`);
 		});
+		if (!updateItem) {
+			console.log('chala saaaaaaaddd');
+			dispatch({
+				type: 'ADD',
+				id: data.id,
+				tempId: data.id + size, // 1regular
+				name: data.name,
+				price: finalPrice,
+				qty: qty,
+				priceOption: size,
+				img: data.img,
+			});
+		} 
+		if (updateItem) {
+			console.log('chala Updateddd');
+			dispatch({
+				type: 'UPDATE',
+				tempId: data.id + size,
+				price: finalPrice,
+				qty: qty,
+			});
+		}
 		console.log(state);
 	};
 	let finalPrice = qty * parseInt(data.price[size]);
@@ -34,11 +51,12 @@ const Card = props => {
 			<div className="w-80 rounded-lg bg-white overflow-hidden dark:bg-black border-gradient">
 				<div className="relative w-full h-80">
 					<Image
+						className="object-contain"
 						priority={false}
 						src={data.img}
-						layout="fill"
-						objectFit="cover"
 						alt="pizza"
+						placeholder="empty"
+						layout="fill"
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					/>
 				</div>
