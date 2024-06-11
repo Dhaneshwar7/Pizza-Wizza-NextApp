@@ -2,7 +2,7 @@ import { CartContext } from '@/utils/ContextReducer';
 import React, { useContext } from 'react';
 
 const Cart = () => {
-	const { state } = useContext(CartContext);
+	const { state, dispatch } = useContext(CartContext);
 	return (
 		<>
 			{/* <div
@@ -51,7 +51,7 @@ const Cart = () => {
 					</div>
 				</div>
 			</div> */}
-      {/* Alert Box  */}
+			{/* Alert Box  */}
 			{/* <div
 				className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
 				role="alert"
@@ -207,6 +207,13 @@ const Cart = () => {
 														<td class="whitespace-nowrap  px-6 py-4">
 															<div className="  flex flex-row  ">
 																<svg
+																	onClick={() => {
+																		dispatch({
+																			type: 'INCREMENT',
+																			tempId: data.tempId,
+																			unitPrice: data.price / data.qty,
+																		});
+																	}}
 																	xmlns="http://www.w3.org/2000/svg"
 																	fill="none"
 																	viewBox="0 0 24 24"
@@ -222,6 +229,13 @@ const Cart = () => {
 																</svg>
 																{data.qty}
 																<svg
+																	onClick={() => {
+																		dispatch({
+																			type: 'DECREMENT',
+																			tempId: data.tempId,
+																			unitPrice: data.price / data.qty,
+																		});
+																	}}
 																	xmlns="http://www.w3.org/2000/svg"
 																	fill="none"
 																	viewBox="0 0 24 24"
@@ -241,7 +255,12 @@ const Cart = () => {
 															₹{data.price}/-
 														</td>
 														{/* delete option */}
-														<td class="cursor-pointer whitespace-nowrap px-2 py-2 hover:text-red-500">
+														<td
+															class="cursor-pointer whitespace-nowrap px-2 py-2 hover:text-red-500"
+															onClick={() =>
+																dispatch({ type: 'REMOVE', index: index })
+															}
+														>
 															<svg
 																xmlns="http://www.w3.org/2000/svg"
 																fill="none"
@@ -263,14 +282,9 @@ const Cart = () => {
 										</tbody>
 									</table>
 									<div>
-										<h1 className="font-bold my-2">
-											{' '}
-											Total Price: {}/-
-										</h1>
+										<h1 className="font-bold my-2"> Total Price: {}/-</h1>
 									</div>
-									<button
-										className="border dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700  hover:text-gray-100 "
-									>
+									<button className="border dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700  hover:text-gray-100 ">
 										Check Out
 									</button>
 								</>

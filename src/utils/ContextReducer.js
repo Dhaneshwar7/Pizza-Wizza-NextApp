@@ -16,17 +16,43 @@ const reducer = (state, action) => {
 				},
 			];
 		case 'UPDATE':
-			let arr = [...state];
-			arr.find((food, index) => {
+			let updatedArr = [...state];
+			updatedArr.find((food, index) => {
 				if (food.tempId === action.tempId) {
-					arr[index] = {
+					updatedArr[index] = {
 						...food,
 						qty: parseInt(action.qty) + parseInt(food.qty),
 						price: action.price + food.price,
 					};
 				}
 			});
-			return arr;
+			return updatedArr;
+
+		case 'REMOVE':
+			let removeAndUpdateArr = [...state];
+			removeAndUpdateArr.splice(action.index, 1);
+			return removeAndUpdateArr;
+
+		case 'INCREMENT':
+			return state.map(food =>
+				food.tempId === action.tempId
+					? {
+							...food,
+							qty: food.qty + 1,
+							price: food.price + action.unitPrice,
+					  }
+					: food
+			);
+		case 'DECREMENT':
+			return state.map(food =>
+				food.tempId === action.tempId
+					? {
+							...food,
+							qty: food.qty > 1 ? food.qty - 1 : 1, // ensure qty doesn't go below 1
+							price: food.qty > 1 ? food.price - action.unitPrice : food.price, // ensure price doesn't decrease if qty is 1
+					  }
+					: food
+			);
 
 		default:
 			console.log('reducer working');
