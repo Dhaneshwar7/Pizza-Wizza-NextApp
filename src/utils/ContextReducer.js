@@ -54,6 +54,9 @@ const reducer = (state, action) => {
 					: food
 			);
 
+		case 'DROP':
+			return [];
+
 		default:
 			console.log('reducer working');
 	}
