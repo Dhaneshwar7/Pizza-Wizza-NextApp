@@ -2,12 +2,13 @@
 import Card from '@/componenets/home/Card';
 import CarouselComponent from '@/componenets/home/Carousel';
 import cardData from '@/store/cardData.json';
+import { baseUrl } from '@/utils/baseUrl';
 import { Inter } from 'next/font/google';
 import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+export default function Home(props) {
 	let categories = new Set();
 	const [typeFilter, setTypeFilter] = useState(false);
 	const foodData = [];
@@ -19,6 +20,8 @@ export default function Home() {
 
 	handleCatData();
 	const categoryArray = [...categories];
+	console.log(props.data?.data);
+	// console.log(process.env.NODE_ENV);
 	return (
 		<>
 			<CarouselComponent />
@@ -81,7 +84,9 @@ export default function Home() {
 								<div className="grid mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 									{foodData
 										?.filter(foodData => category === foodData.category)
-										?.filter(foodData=> typeFilter?typeFilter===foodData.foodType:foodData)
+										?.filter(foodData =>
+											typeFilter ? typeFilter === foodData.foodType : foodData
+										)
 										?.map(data => {
 											return <Card key={data.id} foodData={data} />;
 										})}
@@ -93,4 +98,29 @@ export default function Home() {
 			</div>
 		</>
 	);
+}
+
+export async function getStaticProps() {
+	let data = null;
+	try {
+		const response = await fetch(baseUrl + 'api/foodData', { method: 'GET' });
+
+		if (!response.ok) {
+			// If the response is not ok, log the status and statusText
+			throw new Error(
+				`HTTP error! status: ${response.status}, statusText: ${response.statusText}`
+			);
+		}
+
+		const pizzaData = await response.json();
+		data = pizzaData;
+	} catch (error) {
+		console.log('Error fetching data:', error.message);
+	}
+
+	return {
+		props: {
+			data: data || null,
+		},
+	};
 }
