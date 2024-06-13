@@ -1,29 +1,32 @@
 'use strict';
 import Card from '@/componenets/home/Card';
 import CarouselComponent from '@/componenets/home/Carousel';
-import cardData from '@/store/cardData.json';
 import { baseUrl } from '@/utils/baseUrl';
 import { Inter } from 'next/font/google';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home(props) {
+export default function Home({ data }) {
 	let categories = new Set();
 	const [typeFilter, setTypeFilter] = useState(false);
 	const foodData = [];
 	const handleCatData = () => {
-		cardData.map(data => {
+		data?.map(data => {
 			return foodData.push(data), categories.add(data.category);
 		});
 	};
 
 	handleCatData();
 	const categoryArray = [...categories];
-	console.log(props.data?.data);
+	// console.log(data);
 	// console.log(process.env.NODE_ENV);
 	return (
 		<>
+		<Head>
+			<title>Pizzaaa</title>
+		</Head>
 			<CarouselComponent />
 			<div className="container mx-auto">
 				<div className="my-6 space-x-5">
@@ -120,7 +123,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			data: data || null,
+			data: data.data || null,
 		},
 	};
 }
