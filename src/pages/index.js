@@ -74,11 +74,11 @@ export default function Home({ data }) {
 						Non Veg
 					</button>
 				</div>
-				{categoryArray.map(category => {
+				{categoryArray.map((category ,index)=> {
 					return (
 						<>
 							<div
-								key={category}
+								key={index}
 								className="text-4xl mt-10 mb-3 uppercase font-bold"
 							>
 								{category}
@@ -91,8 +91,8 @@ export default function Home({ data }) {
 										?.filter(foodData =>
 											typeFilter ? typeFilter === foodData.foodType : foodData
 										)
-										?.map(data => {
-											return <Card key={data.id} foodData={data} />;
+										?.map((data, idx) => {
+											return <Card key={idx} foodData={data} />;
 										})}
 								</div>
 							</div>

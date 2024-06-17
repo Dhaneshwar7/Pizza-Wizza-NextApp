@@ -1,4 +1,5 @@
 import { CartContext } from '@/utils/ContextReducer';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 
@@ -50,6 +51,9 @@ const Cart = () => {
 	let totalCheckoutPrice = state.reduce((total, food) => total + food.price, 0);
 	return (
 		<>
+			<Head>
+				<title>Cart</title>
+			</Head>
 			{success && (
 				<div
 					class="bg-teal-100 border-t-4 max-w-sm mx-auto items-center flex justify-self-center border-teal-500 rounded-b text-teal-900 px-5 py-3 shadow-md"
