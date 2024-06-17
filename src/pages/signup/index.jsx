@@ -1,3 +1,4 @@
+import { Fascinate_Inline } from 'next/font/google';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -38,15 +39,15 @@ const Signup = () => {
 		}
 	};
 	const handleChange = e => {
-		setCredentials({ ...credentials, [e.targefalsee]: e.target.value });
+		setCredentials({ ...credentials, [e.target.name]: e.target.value });
 		// console.log(credentials);
 	};
 
 	return (
 		<>
-			<Head>
-				<title>SignUp 🔏</title>
-			</Head>
+		<Head>
+			<title>SignUp 🔏</title>
+		</Head>
 			<div
 				style={{
 					height: '80vh',
