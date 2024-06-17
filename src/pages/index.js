@@ -103,23 +103,16 @@ export default function Home({ data }) {
 		</>
 	);
 }
-
 export async function getStaticProps() {
 	let data;
 	try {
-		const response = await fetch(baseUrl + 'api/foodData', { method: 'GET' });
+		const pizzaData = await fetch(baseUrl + 'api/foodData', { method: 'GET' })
+			.then(response => response.json())
+			.catch(error => error.message);
 
-		if (!response.ok) {
-			// If the response is not ok, log the status and statusText
-			throw new Error(
-				`HTTP error! status: ${response.status}, statusText: ${response.statusText}`
-			);
-		}
-
-		const pizzaData = await response.json();
-		data = await JSON.parse(JSON.stringify(pizzaData));
+		data = await JSON.parse(JSON.stringify(pizzaData)); // step required during deployment in staticProps
 	} catch (error) {
-		console.log('Error fetching data:', error.message);
+		console.log(error.message);
 	}
 
 	return {
