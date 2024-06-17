@@ -3,7 +3,7 @@ import db from '@/utils/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const jwtSecret = '399i0i3kfjldjf';
+const jwtSecret = process.env.JWT_SECRET;
 export default async function handler(req, res) {
 	let success = false;
 	const salt = await bcrypt.genSalt(10);
