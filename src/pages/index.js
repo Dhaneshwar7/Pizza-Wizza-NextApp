@@ -26,7 +26,7 @@ export default function Home({ data }) {
 	return (
 		<>
 			<Head>
-				<title>Pizzaaa Home</title>
+				<title>Pizza 🍕🏠</title>
 			</Head>
 			<CarouselComponent />
 			<div className="container mx-auto">
