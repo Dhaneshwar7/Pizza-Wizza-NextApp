@@ -24,7 +24,7 @@ const Login = () => {
 		if (res.success) {
 			localStorage.setItem('token', res.authToken);
 			localStorage.setItem('userEmail', credentials.email);
-			localStorage.setItem('isAdmin', res.isAdmin);
+			localStorage.setItem('isAdmin', await JSON.parse(res.isAdmin));
 			router.push('/');
 		} else {
 			alert(res.error);

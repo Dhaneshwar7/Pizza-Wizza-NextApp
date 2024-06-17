@@ -20,9 +20,9 @@ export default function Home({ data }) {
 
 	handleCatData();
 	const categoryArray = [...categories];
-	useEffect(() => {
-		localStorage.setItem('isAdmin', false); //added this line here to prevent anyone from accessing /admin if not logged in.
-	}, []);
+	// useEffect(() => {
+	// 	localStorage.setItem('isAdmin', false); //added this line here to prevent anyone from accessing /admin if not logged in.
+	// }, []);
 	return (
 		<>
 			<Head>
