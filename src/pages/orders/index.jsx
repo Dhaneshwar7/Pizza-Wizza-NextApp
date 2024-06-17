@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 const Order = () => {
-  return (
-    <div>Order page visible</div>
-  )
-}
+	const [ordersData, setOrdersData] = useState([]);
 
-export default Order
+  const fetchData= async ()=>{
+    await fetch("api/myOrdersData",{
+      method:"POST",
+      headers
+    })
+  }
+	return <div>Order page visible</div>;
+};
+
+export default Order;

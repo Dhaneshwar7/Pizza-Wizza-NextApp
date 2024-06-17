@@ -31,7 +31,7 @@ const Login = () => {
 	};
 	const handleChange = e => {
 		setCredentials({ ...credentials, [e.target.name]: e.target.value });
-		console.log(credentials);
+		// console.log(credentials);
 	};
 	return (
 		<div
