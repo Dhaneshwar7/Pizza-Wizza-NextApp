@@ -55,7 +55,7 @@ const Card = props => {
 					<div className="relative w-full h-80">
 						<Image
 							className="object-contain"
-							priority={false}
+							priority={true}
 							src={data.img}
 							alt="food item"
 							placeholder="empty"

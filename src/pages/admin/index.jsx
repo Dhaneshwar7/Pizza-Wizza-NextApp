@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Custom404 from '../404';
+import Head from 'next/head';
 
 const Admin = () => {
 	const router = useRouter();
@@ -66,6 +67,9 @@ const Admin = () => {
 
 	return (
 		<>
+		<Head>
+			<title>Create ➕🍔</title>
+		</Head>
 			{ mounted ? (
 				<div
 					style={{
