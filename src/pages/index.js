@@ -20,13 +20,14 @@ export default function Home({ data }) {
 
 	handleCatData();
 	const categoryArray = [...categories];
-	// console.log(data);
-	// console.log(process.env.NODE_ENV);
+	useEffect(() => {
+		localStorage.setItem('isAdmin', false); //added this line here to prevent anyone from accessing /admin if not logged in.
+	}, []);
 	return (
 		<>
-		<Head>
-			<title>Pizzaaa Home</title>
-		</Head>
+			<Head>
+				<title>Pizzaaa Home</title>
+			</Head>
 			<CarouselComponent />
 			<div className="container mx-auto">
 				<div className="my-6 space-x-5">
@@ -104,7 +105,7 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-	let data = null;
+	let data;
 	try {
 		const response = await fetch(baseUrl + 'api/foodData', { method: 'GET' });
 
@@ -116,7 +117,7 @@ export async function getStaticProps() {
 		}
 
 		const pizzaData = await response.json();
-		data = pizzaData;
+		data = await JSON.parse(JSON.stringify(pizzaData));
 	} catch (error) {
 		console.log('Error fetching data:', error.message);
 	}
@@ -125,5 +126,6 @@ export async function getStaticProps() {
 		props: {
 			data: data.data || null,
 		},
+		revalidate: 5,
 	};
 }
