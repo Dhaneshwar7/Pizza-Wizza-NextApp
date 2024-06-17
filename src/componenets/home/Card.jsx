@@ -1,7 +1,7 @@
 import { CartContext } from '@/utils/ContextReducer';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const Card = props => {
 	const data = props.foodData;
@@ -76,8 +76,8 @@ const Card = props => {
 						value={qty}
 						onChange={handleQty}
 					>
-						{Array.from({ length: 6 }, (_, i) => (
-							<option key={i + 1} value={i + 1}>
+						{Array.from({ length: 6 }, (e, i) => (
+							<option key={i+1} value={i + 1}>
 								{i + 1}
 							</option>
 						))}
@@ -87,9 +87,9 @@ const Card = props => {
 						value={size}
 						onChange={handleSize}
 					>
-						{prizeOptions.map(option => (
-							<option key={option} value={option}>
-								{option}
+						{prizeOptions.map((options, index) => (
+							<option key={index} value={options}>
+								{options}
 							</option>
 						))}
 					</select>

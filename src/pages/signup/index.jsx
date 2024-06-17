@@ -30,13 +30,14 @@ const Signup = () => {
 		if (res.success) {
 			localStorage.setItem('token', res.authToken);
 			localStorage.setItem('userEmail', credentials.email);
+			localStorage.setItem('isAdmin', false);
 			router.push('/');
 		} else {
 			alert(res.error);
 		}
 	};
 	const handleChange = e => {
-		setCredentials({ ...credentials, [e.target.name]: e.target.value });
+		setCredentials({ ...credentials, [e.targefalsee]: e.target.value });
 		// console.log(credentials);
 	};
 

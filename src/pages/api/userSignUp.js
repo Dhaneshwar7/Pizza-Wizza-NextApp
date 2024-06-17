@@ -23,10 +23,11 @@ export default async function handler(req, res) {
 					id: user['_id'],
 				},
 			};
+			const isAdmin = user.isAdmin;
 			const authToken = jwt.sign(data, jwtSecret);
 			success = true;
 			await db.disconnect();
-			return res.status(201).json({ success: success, authToken });
+			return res.status(201).json({ success: success, authToken, isAdmin });
 		} catch (error) {
 			await db.disconnect();
 			return res.status(500).json({ error: error.message });

@@ -21,7 +21,8 @@ const Cart = () => {
 		})
 			.then(response => {
 				if (response.status === 200) {
-					dispatch({ type: 'DROP' }), setSuccess(true);
+					dispatch({ type: 'DROP' });
+					setSuccess(true);
 				}
 			})
 			.catch(response => {
@@ -35,7 +36,7 @@ const Cart = () => {
 		<>
 			{success && (
 				<div
-					class="bg-teal-100 border-t-4 max-w-sm mx-auto items-center flex justify-self-center border-teal-500 rounded-b text-teal-900 px- py-3 shadow-md"
+					class="bg-teal-100 border-t-4 max-w-sm mx-auto items-center flex justify-self-center border-teal-500 rounded-b text-teal-900 px-5 py-3 shadow-md"
 					role="alert"
 				>
 					<div className="flex">
