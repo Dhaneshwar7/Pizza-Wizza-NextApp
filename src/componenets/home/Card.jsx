@@ -96,7 +96,7 @@ const Card = props => {
 				</div>
 				<div className="flex p-4 font-bold justify-between">
 					<button
-						className="border dark:border-gray-400 border-gray-900 rounded p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100"
+						className="border dark:border-gray-400 text-black dark:text-white border-gray-900 rounded p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100"
 						onClick={handleAddtoCart}
 					>
 						Add to cart

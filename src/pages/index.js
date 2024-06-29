@@ -32,16 +32,16 @@ export default function Home({ data }) {
 			<div className="container mx-auto">
 				<div className="my-6 space-x-5">
 					<button
-						className={`border-black rounded-full dark:border-white border-2 py-1 px-3 ${
-							!typeFilter && 'bg-slate-300 dark:bg-slate-600'
+						className={`border-black rounded-full dark:border-white text-black dark:text-gray-100 border-2 py-1 px-3 ${
+							!typeFilter && 'bg-slate-300 dark:bg-slate-700 '
 						} `}
 						onClick={() => setTypeFilter(false)}
 					>
 						All
 					</button>
 					<button
-						className={`border-black rounded-full dark:border-white border-2 py-1 px-3 ${
-							typeFilter === 'Veg' && 'bg-slate-300 dark:bg-slate-600'
+						className={`border-black rounded-full dark:border-white border-2 text-black dark:text-gray-100 py-1 px-3 ${
+							typeFilter === 'Veg' && 'bg-slate-300 dark:bg-slate-700 '
 						} `}
 						onClick={() => {
 							setTypeFilter('Veg');
@@ -57,8 +57,8 @@ export default function Home({ data }) {
 						Veg
 					</button>
 					<button
-						className={`border-black rounded-full dark:border-white border-2 py-1 px-3 ${
-							typeFilter === 'Non-Veg' && 'bg-slate-300 dark:bg-slate-600'
+						className={`border-black rounded-full dark:border-white text-black dark:text-gray-100 border-2 py-1 px-3 ${
+							typeFilter === 'Non-Veg' && 'bg-slate-300  dark:bg-slate-700 '
 						} `}
 						onClick={() => {
 							setTypeFilter('Non-Veg');
@@ -74,12 +74,12 @@ export default function Home({ data }) {
 						Non Veg
 					</button>
 				</div>
-				{categoryArray.map((category ,index)=> {
+				{categoryArray.map((category, index) => {
 					return (
 						<>
 							<div
 								key={index}
-								className="text-4xl mt-10 mb-3 uppercase font-bold"
+								className="text-4xl text-black dark:text-white mt-10 mb-3 uppercase font-bold"
 							>
 								{category}
 							</div>
