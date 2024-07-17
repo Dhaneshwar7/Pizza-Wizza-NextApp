@@ -13,7 +13,6 @@ const dataSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-const PizzaData =
-	mongoose.models.PizzaData || mongoose.model('PizzaData', dataSchema);
+const PizzaData = mongoose.models.PizzaData || mongoose.model('PizzaData', dataSchema);
 
 export default PizzaData;
